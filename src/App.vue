@@ -20,15 +20,10 @@ import CalendarHeader from "@/components/CalendarHeader/CalendarHeader.vue";
 import DayLayout from "@/components/Layouts/Day.vue";
 import WeekLayout from "@/components/Layouts/Week.vue";
 import MonthLayout from "@/components/Layouts/Month.vue";
-import { AppDate } from "@/types";
-
-// define types
-interface Layouts {
-  [key: string]: any;
-}
+import type { AppDate, Keyable } from "@/types";
 
 // define constants
-const layouts: Layouts = {
+const layouts: Keyable = {
   day: DayLayout,
   week: WeekLayout,
   month: MonthLayout,
@@ -37,7 +32,7 @@ const layouts: Layouts = {
 // define refs
 const currentLayout = ref("month");
 
-const dates = ref<AppDate>([]);
+const dates = ref<AppDate[]>([]);
 
 const todayDate = new Date();
 
@@ -88,7 +83,7 @@ onMounted(() => {
   getDays(todayDate.getMonth(), todayDate.getFullYear(), todayDate.getDate());
 });
 
-watch(currentLayout, (newLayout: string) => {
+watch(currentLayout, () => {
   getDays(currentMonth.value, currentYear.value);
 });
 </script>

@@ -63,8 +63,6 @@ const getMonthOrWeekOrDay = (direction = 0, newDate = null) => {
   } else if (props.activeLayout === "week") {
     const { month, year, date } = calendarGetters.getNextPrevWeek(
       direction,
-      props.month,
-      props.year,
       newDate || props.currentDate
     );
 
@@ -76,8 +74,6 @@ const getMonthOrWeekOrDay = (direction = 0, newDate = null) => {
   } else {
     const { month, year, date } = calendarGetters.getNextPrevDay(
       direction,
-      props.month,
-      props.year,
       newDate || props.currentDate
     );
 

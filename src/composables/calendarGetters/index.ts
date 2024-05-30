@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { formatTime } from "@/helpers/dates";
-import { CalenadarGetters } from "@/types";
+import { CalenadarGetters, Keyable } from "@/types";
 
 const months = {
   0: "January",
@@ -27,7 +27,7 @@ const days = [
   "Saturday",
 ];
 
-const dayToNumber = {
+const dayToNumber: Keyable = {
     Sunday: 0,
     Monday: 1,
     Tuesday: 2,

@@ -1,19 +1,24 @@
+import { Ref } from "vue";
 export interface AppDate {
     day: number
     date: Date
 }
+
+export interface Keyable {
+    [key: string]: number | string | any;
+}
 export interface CalenadarGetters {
-    months: string[];
+    months: Keyable;
     days: string[];
     layouts: string[];
     getDaysInMonth: (month: number, year: number) => any[];
-    getNextPrevMonth: (month: number, year: number, direction: string) => { month: number; year: number };
-    getNextPrevWeek: (month: number, year: number, date: number, direction: string) => any[];
+    getNextPrevMonth: (direction: number, month: number, year: number) => { month: number; year: number };
+    getNextPrevWeek: (month: number, date: Date) => { month: number; year: number; date: number }
     getDaysInWeek: (month: number, year: number, date: number) => any[];
     dayTimes: () => string[];
-    weekSevenDays: () => string[];
+    weekSevenDays: Ref<Date[]>;
     getDayString: (date: Date) => string;
-    getNextPrevDay: (date: Date, direction: string) => Date;
+    getNextPrevDay: (direction: number, date: Date) => { month: number; year: number; date: number};
     getAllTimeSlots: any;
-    dayToNumber: (day: string) => number;
+    dayToNumber: Keyable;
 }
