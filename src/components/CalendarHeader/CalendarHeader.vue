@@ -16,9 +16,9 @@
 
     <div class="calendar-header__layouts">
       <button class="layout" @click="getMonthOrWeekOrDay(-1)">
-        <Icon name="chevron-left" class="icon"/>
+        <Icon name="chevron-left" class="icon" />
       </button>
-      <button class="layout">
+      <button class="layout" @click="getMonthOrWeekOrDay()">
         <h5>Today</h5>
       </button>
       <button class="layout" @click="getMonthOrWeekOrDay(+1)">
@@ -27,36 +27,29 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { calendarGetters } from "@/composables";
 
-const props = defineProps({
-  year: {
-    type: Number,
-    default: new Date().getFullYear(),
-  },
-  month: {
-    type: Number,
-    default: new Date().getMonth(),
-  },
-  activeLayout: {
-    type: String,
-    default: "month",
-  },
-  currentDate: {
-    type: Date,
-    default: new Date(),
-  },
+interface Props {
+  year?: number;
+  month?: number;
+  activeLayout?: string;
+  currentDate?: Date;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  year: new Date().getFullYear(),
+  month: new Date().getMonth(),
+  activeLayout: "month",
+  currentDate: () => new Date(),
 });
 
-const emit = defineEmits(["change-layout"]);
+const emit = defineEmits(["change-layout", "change"]);
 
 const monthString = computed(() => calendarGetters.months[props.month]);
 
-const authStore = computed(() => window.store.auth);
-
-const getMonthOrWeekOrDay = (direction = null, newDate = null) => {
+const getMonthOrWeekOrDay = (direction = 0, newDate = null) => {
   if (props.activeLayout === "month") {
     const { month, year } = calendarGetters.getNextPrevMonth(
       direction,
@@ -94,10 +87,6 @@ const getMonthOrWeekOrDay = (direction = null, newDate = null) => {
       date,
     });
   }
-};
-
-const closeCalendar = () => {
-  authStore.value.showCalendar = false;
 };
 </script>
 <style lang="scss" scoped>
