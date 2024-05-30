@@ -43,8 +43,6 @@ const todayDate = new Date();
 
 const currentDate = ref(todayDate);
 
-const currentDateForAppointment = ref(todayDate.toISOString().split("T")[0]);
-
 const currentYear = ref(todayDate.getFullYear());
 
 const currentMonth = ref(todayDate.getMonth());
@@ -59,24 +57,10 @@ const getDays = (month: number, year: number, date = 1) => {
   currentYear.value = year;
   currentDate.value = new Date(year, month, date);
 
-  //set current date for appointment fetching
-  currentDateForAppointment.value = currentDate.value
-    .toISOString()
-    .split("T")[0];
-
   if (currentLayout.value === "month") {
     dates.value = calendarGetters.getDaysInMonth(month, year);
-    startDate.value = dates.value[0].date.toISOString().split("T")[0];
-    endDate.value = dates.value[dates.value.length - 1].date
-      .toISOString()
-      .split("T")[0];
   } else if (currentLayout.value === "week") {
-    dates.value = calendarGetters.weekSevenDays.value;
-    console.log(dates.value);
-    startDate.value = dates.value[0].toISOString().split("T")[0];
-    endDate.value = dates.value[dates.value.length - 1]
-      .toISOString()
-      .split("T")[0];
+    dates.value = calendarGetters.getDaysInWeek(month, year, date);
   } else {
     startDate.value = currentDate.value.toISOString().split("T")[0];
     endDate.value = currentDate.value.toISOString().split("T")[0];
