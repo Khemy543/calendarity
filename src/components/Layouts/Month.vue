@@ -32,11 +32,13 @@ import type { AppDate } from "@/types";
 interface Props {
   layout: string;
   dates: AppDate[];
+  currentDate: Date;
 }
 
 withDefaults(defineProps<Props>(), {
   layout: "month",
   dates: () => [],
+  currentDate: () => new Date(),
 });
 
 const emit = defineEmits(["set-date", "toggle-modal"]);

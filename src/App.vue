@@ -11,6 +11,7 @@
     :is="layouts[currentLayout]"
     :dates="dates"
     :layout="currentLayout"
+    :current-date="currentDate"
   />
 </template>
 <script setup lang="ts">

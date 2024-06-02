@@ -45,10 +45,12 @@ import { AppDate } from "@/types";
 
 interface Props {
   dates: AppDate[];
+  currentDate: Date;
 }
 
 withDefaults(defineProps<Props>(), {
   dates: () => [],
+  currentDate: () => new Date(),
 });
 
 const emit = defineEmits(["set-date", "toggle-modal"]);

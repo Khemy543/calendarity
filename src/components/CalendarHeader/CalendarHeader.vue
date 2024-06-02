@@ -72,6 +72,7 @@ const getMonthOrWeekOrDay = (direction = 0, newDate = null) => {
       date,
     });
   } else {
+    console.log('here')
     const { month, year, date } = calendarGetters.getNextPrevDay(
       direction,
       newDate || props.currentDate
