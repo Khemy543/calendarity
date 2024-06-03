@@ -8,7 +8,7 @@
         :key="layout"
         @click="emit('change-layout', layout)"
       >
-        <Icon :name="layout" class="icon" />
+        <h5>{{ layout }}</h5>
       </button>
     </div>
 

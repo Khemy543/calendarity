@@ -1,5 +1,5 @@
 import { formatTime } from "@/helpers/dates";
-import { CalenadarGetters, Keyable } from "@/types";
+import { CalenadarGetters, Keyable, LayoutTypes } from "@/types";
 
 const months = {
   0: "January",
@@ -36,7 +36,7 @@ const dayToNumber: Keyable = {
   Saturday: 6,
 };
 
-const layouts = ["month", "week", "day"];
+const layouts: LayoutTypes[] = ["month", "week", "day"];
 
 const dayTimes = () => {
   const times = [];
