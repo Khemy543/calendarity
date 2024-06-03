@@ -30,9 +30,8 @@
       <div class="week__time__slots">
         <div
           v-for="(slot, index) in timeSlots"
-          :key="slot.time + index"
+          :key="`${slot.time}-${index}`"
           class="slot"
-          style="position: relative"
         ></div>
       </div>
     </div>

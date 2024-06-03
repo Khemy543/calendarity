@@ -21,7 +21,7 @@ import CalendarHeader from "@/components/CalendarHeader/CalendarHeader.vue";
 import DayLayout from "@/components/Layouts/Day.vue";
 import WeekLayout from "@/components/Layouts/Week.vue";
 import MonthLayout from "@/components/Layouts/Month.vue";
-import type { AppDate, Keyable } from "@/types";
+import type { AppDate, Keyable, LayoutTypes } from "@/types";
 
 // define constants
 const layouts: Keyable = {
@@ -31,21 +31,18 @@ const layouts: Keyable = {
 };
 
 // define refs
-const currentLayout = ref("month");
+const currentLayout = ref<LayoutTypes>("month");
 
 const dates = ref<AppDate[]>([]);
 
 const todayDate = new Date();
 
-const currentDate = ref(todayDate);
+const currentDate = ref<Date>(todayDate);
 
-const currentYear = ref(todayDate.getFullYear());
+const currentYear = ref<number>(todayDate.getFullYear());
 
-const currentMonth = ref(todayDate.getMonth());
+const currentMonth = ref<number>(todayDate.getMonth());
 
-const startDate = ref();
-
-const endDate = ref();
 
 const getDays = (month: number, year: number, date = 1) => {
   dates.value = [];
@@ -57,15 +54,11 @@ const getDays = (month: number, year: number, date = 1) => {
     dates.value = calendarGetters.getDaysInMonth(month, year);
   } else if (currentLayout.value === "week") {
     dates.value = calendarGetters.getDaysInWeek(month, year, date);
-  } else {
-    startDate.value = currentDate.value.toISOString().split("T")[0];
-    endDate.value = currentDate.value.toISOString().split("T")[0];
   }
 };
 
-const handleLayoutchange = (newLayout: string) => {
+const handleLayoutchange = (newLayout: LayoutTypes) => {
   currentLayout.value = newLayout;
-  // getInitialCalendarDates();
 };
 
 const handleChange = ({
@@ -85,7 +78,7 @@ onMounted(() => {
 });
 
 watch(currentLayout, () => {
-  getDays(currentMonth.value, currentYear.value);
+  getDays(currentMonth.value, currentYear.value, currentDate.value.getDate());
 });
 </script>
 <style scoped></style>

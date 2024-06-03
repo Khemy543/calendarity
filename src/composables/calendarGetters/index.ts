@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { formatTime } from "@/helpers/dates";
 import { CalenadarGetters, Keyable } from "@/types";
 
@@ -28,18 +28,16 @@ const days = [
 ];
 
 const dayToNumber: Keyable = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6,
-  };
+  Sunday: 0,
+  Monday: 1,
+  Tuesday: 2,
+  Wednesday: 3,
+  Thursday: 4,
+  Friday: 5,
+  Saturday: 6,
+};
 
 const layouts = ["month", "week", "day"];
-
-const weekSevenDays = ref<Date[]>([]);
 
 const dayTimes = () => {
   const times = [];
@@ -87,33 +85,26 @@ const getNextPrevMonth = (direction: number, month: number, year: number) => {
 };
 
 const getNextPrevWeek = (direction = 0, date: Date) => {
-  const daysUntilNextSunday = 7 - date.getDay();
-  const nextSunday = new Date(date);
-  nextSunday.setDate(date.getDate() + direction * daysUntilNextSunday);
-
-  const days: Date[] = [];
   if (!direction) {
-    const currentDayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+    date = new Date();
+    // get the start of the week of today's date (Sunday)
     const startOfWeek = new Date(date);
-    startOfWeek.setDate(date.getDate() - currentDayOfWeek);
-    for (let i = 0; i < 7; i++) {
-      const nextDay = new Date(startOfWeek);
-      nextDay.setDate(startOfWeek.getDate() + i);
-      days.push(nextDay);
-    }
+    startOfWeek.setDate(date.getDate() - date.getDay());
+    return {
+      month: startOfWeek.getMonth(),
+      year: startOfWeek.getFullYear(),
+      date: startOfWeek.getDate(),
+    };
   } else {
-    for (let i = 0; i < 7; i++) {
-      const nextDay = new Date(nextSunday);
-      nextDay.setDate(nextSunday.getDate() + i);
-      days.push(nextDay);
-    }
+    const daysUntilNextSunday = 7 - date.getDay();
+    const nextSunday = new Date(date);
+    nextSunday.setDate(date.getDate() + direction * daysUntilNextSunday);
+    return {
+      month: nextSunday.getMonth(),
+      year: nextSunday.getFullYear(),
+      date: nextSunday.getDate(),
+    };
   }
-  weekSevenDays.value = [...days];
-  return {
-    month: days[0].getMonth(),
-    year: days[0].getFullYear(),
-    date: days[0].getDate(),
-  };
 };
 
 const getDaysInMonth = (
@@ -200,10 +191,9 @@ const getters: CalenadarGetters = {
   getNextPrevWeek,
   getDaysInWeek,
   dayTimes,
-  weekSevenDays,
   getDayString,
   getNextPrevDay,
   getAllTimeSlots,
-  dayToNumber
+  dayToNumber,
 };
 export default getters;

@@ -30,11 +30,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { calendarGetters } from "@/composables";
+import { type LayoutTypes } from "@/types";
 
 interface Props {
   year?: number;
   month?: number;
-  activeLayout?: string;
+  activeLayout?: LayoutTypes
   currentDate?: Date;
 }
 

@@ -1,4 +1,6 @@
 import { Ref } from "vue";
+
+export type LayoutTypes = 'day' | 'week' | 'month'
 export interface AppDate {
     day: number
     date: Date
@@ -16,7 +18,6 @@ export interface CalenadarGetters {
     getNextPrevWeek: (month: number, date: Date) => { month: number; year: number; date: number }
     getDaysInWeek: (month: number, year: number, date: number) => any[];
     dayTimes: () => string[];
-    weekSevenDays: Ref<Date[]>;
     getDayString: (date: Date) => string;
     getNextPrevDay: (direction: number, date: Date) => { month: number; year: number; date: number};
     getAllTimeSlots: any;
