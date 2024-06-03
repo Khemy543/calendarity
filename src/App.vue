@@ -18,9 +18,9 @@
 import { ref, onMounted, watch } from "vue";
 import { calendarGetters } from "@/composables";
 import CalendarHeader from "@/components/CalendarHeader/CalendarHeader.vue";
-import DayLayout from "@/components/Layouts/Day.vue";
-import WeekLayout from "@/components/Layouts/Week.vue";
-import MonthLayout from "@/components/Layouts/Month.vue";
+import DayLayout from "@/components/Layouts/Day/Day.vue";
+import WeekLayout from "@/components/Layouts/Week/Week.vue";
+import MonthLayout from "@/components/Layouts/Month/Month.vue";
 import type { AppDate, Keyable, LayoutTypes } from "@/types";
 
 // define constants

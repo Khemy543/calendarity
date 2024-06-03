@@ -29,9 +29,10 @@
       </div>
       <div class="week__time__slots">
         <div
-          v-for="(slot, index) in timeSlots"
-          :key="`${slot.time}-${index}`"
+          v-for="(slot, index) in getAllWeekTimeSlots"
+          :key="index"
           class="slot"
+          :class="{ today: calendarGetters.isTodayDate(slot.date) }"
         ></div>
       </div>
     </div>
@@ -47,59 +48,26 @@ interface Props {
   currentDate: Date;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   dates: () => [],
   currentDate: () => new Date(),
 });
 
 const emit = defineEmits(["set-date", "toggle-modal"]);
 
-const timeSlots = computed(() => calendarGetters.getAllTimeSlots.value || []);
+const getAllWeekTimeSlots = computed(() => {
+  const combinations = [];
+  for (const time of calendarGetters.dayTimes()) {
+    for (const day of props.dates) {
+      combinations.push({
+        time,
+        date: day.date,
+      });
+    }
+  }
+  return combinations;
+});
 </script>
 <style lang="scss" scoped>
-.week {
-  position: relative;
-  &__days {
-    display: grid;
-    grid-template-columns: repeat(8, auto);
-    border-bottom: 1px solid $gray-L2;
-
-    &__item {
-      height: 70px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-  }
-  &__body {
-    display: flex;
-  }
-
-  &__time {
-    display: flex;
-    flex-direction: column;
-    width: 100px;
-    text-align: right;
-    padding-right: 9px;
-
-    &__slots {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      width: 100%;
-      background-color: $gray-L2;
-      padding-left: 1px;
-      column-gap: 1px;
-
-      .slot {
-        background-color: $white;
-        height: 56px;
-        display: block;
-      }
-    }
-    .time {
-      height: 57px;
-    }
-  }
-}
+@import url("./Week.scss");
 </style>

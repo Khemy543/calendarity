@@ -1,0 +1,37 @@
+.calendar {
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+  
+      &.bordered {
+        border-top: 1px solid $gray-L2;
+      }
+  
+      &__item {
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+  
+        &.day {
+          height: 130px;
+          display: block;
+          position: relative;
+          border-top: 1px solid $gray-L2;
+          border-right: 1px solid $gray-L2;
+  
+          & p {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+          }
+        }
+  
+        &.today {
+          background-color: $gray-L2;
+        }
+      }
+    }
+  }

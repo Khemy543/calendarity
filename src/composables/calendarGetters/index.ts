@@ -1,4 +1,3 @@
-import { computed } from "vue";
 import { formatTime } from "@/helpers/dates";
 import { CalenadarGetters, Keyable } from "@/types";
 
@@ -17,7 +16,7 @@ const months = {
   11: "December",
 };
 
-const days = [
+const days: string[] = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -48,18 +47,17 @@ const dayTimes = () => {
   return times;
 };
 
-const getNextPrevDay = (direction: number, date: Date) => {
+const getNextPrevDay = (direction = 0, date: Date) => {
   const todayDate = new Date();
   if (!direction) {
     return {
       month: todayDate.getMonth(),
       year: todayDate.getFullYear(),
-      date: todayDate.getDay(),
+      date: todayDate.getDate(),
     };
   }
   const nextDayDate = new Date(date);
   nextDayDate.setDate(nextDayDate.getDate() + direction);
-
   return {
     month: nextDayDate.getMonth(),
     year: nextDayDate.getFullYear(),
@@ -172,15 +170,15 @@ const getDayString = (date: Date) => {
   return days[dayIndex];
 };
 
-const getAllTimeSlots = computed(() => {
-  const combinations = [];
-  for (const time of dayTimes()) {
-    for (const day of days) {
-      combinations.push([time, day]);
-    }
-  }
-  return combinations;
-});
+
+const isTodayDate = (date: Date) => {
+  const today = new Date();
+  return (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  );
+};
 
 const getters: CalenadarGetters = {
   months,
@@ -193,7 +191,7 @@ const getters: CalenadarGetters = {
   dayTimes,
   getDayString,
   getNextPrevDay,
-  getAllTimeSlots,
   dayToNumber,
+  isTodayDate
 };
 export default getters;

@@ -1,5 +1,3 @@
-import { Ref } from "vue";
-
 export type LayoutTypes = 'day' | 'week' | 'month'
 export interface AppDate {
     day: number
@@ -20,6 +18,6 @@ export interface CalenadarGetters {
     dayTimes: () => string[];
     getDayString: (date: Date) => string;
     getNextPrevDay: (direction: number, date: Date) => { month: number; year: number; date: number};
-    getAllTimeSlots: any;
     dayToNumber: Keyable;
+    isTodayDate: (date: Date) => boolean;
 }
