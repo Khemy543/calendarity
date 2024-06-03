@@ -46,3 +46,20 @@
       }
     }
   }
+  .dark {
+    .week {
+      &__time {
+        background-color: #1b1b1f;
+        color: $white;
+      }
+      &__time__slots {
+        .slot {
+          background-color: #1b1b1f;
+          color: $white;
+          &.today {
+            background-color: #334155;
+          }
+        }
+      }
+    }
+  }

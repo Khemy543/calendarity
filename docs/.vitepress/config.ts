@@ -6,6 +6,7 @@ export default defineConfig({
   description: "A calendar app",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/icons/logo.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Support', link: '/support' }

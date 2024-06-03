@@ -1,9 +1,9 @@
 <template>
-  <div class="calendar-header">
-    <div class="calendar-header__layouts">
+  <div class="header">
+    <div class="header__layouts">
       <button
         v-for="layout in calendarGetters.layouts"
-        class="layout"
+        class="header__button"
         :class="{ active: layout == activeLayout }"
         :key="layout"
         @click="emit('change-layout', layout)"
@@ -12,16 +12,16 @@
       </button>
     </div>
 
-    <h1 class="calendar-header__current-date">{{ monthString }} {{ year }}</h1>
+    <h1 class="header__current-date">{{ monthString }} {{ year }}</h1>
 
-    <div class="calendar-header__layouts">
-      <button class="layout" @click="getMonthOrWeekOrDay(-1)">
+    <div class="header__layouts">
+      <button class="header__button" @click="getMonthOrWeekOrDay(-1)">
         <Icon name="chevron-left" class="icon" />
       </button>
-      <button class="layout" @click="getMonthOrWeekOrDay()">
+      <button class="header__button" @click="getMonthOrWeekOrDay()">
         <h5>Today</h5>
       </button>
-      <button class="layout" @click="getMonthOrWeekOrDay(+1)">
+      <button class="header__button" @click="getMonthOrWeekOrDay(+1)">
         <Icon name="chevron-right" class="icon" />
       </button>
     </div>
@@ -29,6 +29,7 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
+import Icon from "@/components/Dynamic/Icon.vue";
 import { calendarGetters } from "@/composables";
 import { type LayoutTypes } from "@/types";
 

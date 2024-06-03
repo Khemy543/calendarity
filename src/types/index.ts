@@ -1,4 +1,6 @@
 export type LayoutTypes = 'day' | 'week' | 'month'
+
+export type ColorTypes = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info'
 export interface AppDate {
     day: number
     date: Date
