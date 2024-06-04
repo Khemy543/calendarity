@@ -7,7 +7,7 @@ hero:
   text: "A calendar app"
   tagline: "Calendarity is a modern, customizable calendar application built with Vue.js, Sass, and Pinia. It offers an intuitive interface and powerful features to help you efficiently manage your events."
   image:
-    src: /icons/logo.png
+    src: ./icons/logo.png
     alt: Calendarity
   actions:
     - theme: brand
