@@ -3,11 +3,11 @@
 layout: home
 
 hero:
-  name: "calendarity"
+  name: "Calendarity"
   text: "A calendar app"
   tagline: "Calendarity is a modern, customizable calendar application built with Vue.js, Sass, and Pinia. It offers an intuitive interface and powerful features to help you efficiently manage your events."
   image:
-    src: ./icons/logo.png
+    src: /logo.png
     alt: Calendarity
   actions:
     - theme: brand
@@ -21,14 +21,14 @@ features:
   - title: Vue
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon:
-      src: /icons/vue.svg
+      src: /vue.svg
   - title: Pinia
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon:
-      src: /icons/pinia.svg
+      src: /pinia.svg
   - title: Sass
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon:
-      src: /icons/sass.svg
+      src: /sass.svg
 ---
 
