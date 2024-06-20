@@ -12,6 +12,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "pinia": "^2.1.7",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.21"
   },

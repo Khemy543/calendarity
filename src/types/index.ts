@@ -9,6 +9,15 @@ export interface AppDate {
 export interface Keyable {
     [key: string]: number | string | any;
 }
+
+export interface CalendarEvent {
+    id: string | number;
+    title: string;
+    start: Date | string;
+    end: Date | string;
+    description?: string;
+}
+
 export interface CalenadarGetters {
     months: Keyable;
     days: string[];

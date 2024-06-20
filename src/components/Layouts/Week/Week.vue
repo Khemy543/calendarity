@@ -8,10 +8,10 @@
         :key="index"
       >
         <div>
-          <p class="font-semibold text-sm">
+          <p>
             {{ day.substring(0, 3) }}
           </p>
-          <h4 class="font-semibold text-2xl">
+          <h4>
             {{ dates[index].day || 0 }}
           </h4>
         </div>

@@ -1,13 +1,13 @@
 <template>
   <div class="week">
     <div class="week__days">
-      <div class="week__days__item" style="width: 100px; border: none"></div>
+      <div class="week__days__item"></div>
       <div class="week__days__item">
         <div>
-          <p class="font-semibold text-sm">
+          <p>
             {{ calendarGetters.getDayString(currentDate).substring(0, 3) }}
           </p>
-          <h4 class="font-semibold text-2xl">
+          <h4 class="">
             {{ currentDate.getDate() }}
           </h4>
         </div>
@@ -28,6 +28,7 @@
           v-for="time in calendarGetters.dayTimes()"
           :key="time"
           class="slot"
+          :class="{ today: calendarGetters.isTodayDate(currentDate) }"
           style="position: relative"
         ></div>
       </div>

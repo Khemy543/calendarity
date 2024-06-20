@@ -19,15 +19,15 @@ hero:
 
 features:
   - title: Vue
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Build a dynamic, component-based user interface for the calendar application.
     icon:
       src: /vue.svg
   - title: Pinia
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Create consistent and maintainable styles with variables and modular CSS.
     icon:
       src: /pinia.svg
   - title: Sass
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Centralized state management to handle and synchronize application state efficiently.
     icon:
       src: /sass.svg
 ---

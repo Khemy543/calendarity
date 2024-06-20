@@ -12,6 +12,7 @@
     :dates="dates"
     :layout="currentLayout"
     :current-date="currentDate"
+    :events="events"
   />
 </template>
 <script setup lang="ts">
@@ -21,7 +22,7 @@ import CalendarHeader from "@/components/CalendarHeader/CalendarHeader.vue";
 import DayLayout from "@/components/Layouts/Day/Day.vue";
 import WeekLayout from "@/components/Layouts/Week/Week.vue";
 import MonthLayout from "@/components/Layouts/Month/Month.vue";
-import type { AppDate, Keyable, LayoutTypes } from "@/types";
+import type { AppDate, Keyable, LayoutTypes, CalendarEvent } from "@/types";
 
 // define constants
 const layouts: Keyable = {
@@ -29,6 +30,23 @@ const layouts: Keyable = {
   week: WeekLayout,
   month: MonthLayout,
 };
+
+const events: CalendarEvent[] = [
+  {
+    id: 1,
+    title: "BCH237",
+    start: "2024-06-12T10:30:00",
+    end: "2024-06-12T11:30:00",
+    description: "Lecture",
+  },
+  {
+    id: 2,
+    title: "BCH238",
+    start: "2024-06-12T10:30:00",
+    end: "2024-06-12T11:30:00",
+    description: "Lecture",
+  },
+];
 
 // define refs
 const currentLayout = ref<LayoutTypes>("month");
@@ -42,7 +60,6 @@ const currentDate = ref<Date>(todayDate);
 const currentYear = ref<number>(todayDate.getFullYear());
 
 const currentMonth = ref<number>(todayDate.getMonth());
-
 
 const getDays = (month: number, year: number, date = 1) => {
   dates.value = [];
