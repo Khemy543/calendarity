@@ -34,14 +34,14 @@ const layouts: Keyable = {
 const events: CalendarEvent[] = [
   {
     id: 1,
-    title: "BCH237",
+    title: "Lecture",
     start: "2024-06-12T10:30:00",
     end: "2024-06-12T11:30:00",
     description: "Lecture",
   },
   {
     id: 2,
-    title: "BCH238",
+    title: "Exams",
     start: "2024-06-12T10:30:00",
     end: "2024-06-12T11:30:00",
     description: "Lecture",

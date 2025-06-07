@@ -33,7 +33,9 @@
           :key="index"
           class="slot"
           :class="{ today: calendarGetters.isTodayDate(slot.date) }"
-        ></div>
+        >
+          <EventList :events="getEvents(slot.time, slot.date)" />
+        </div>
       </div>
     </div>
   </div>
@@ -41,16 +43,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { calendarGetters } from "@/composables";
-import { AppDate } from "@/types";
+import { formateDate } from "@/helpers/dates";
+import { AppDate, CalendarEvent } from "@/types";
+import EventList from "@/components/Dynamic/EventList.vue";
 
 interface Props {
   dates: AppDate[];
   currentDate: Date;
+  events: CalendarEvent[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   dates: () => [],
   currentDate: () => new Date(),
+  events: () => [],
 });
 
 const emit = defineEmits(["set-date", "toggle-modal"]);
@@ -67,6 +73,37 @@ const getAllWeekTimeSlots = computed(() => {
   }
   return combinations;
 });
+
+const getEvents = (time: string, date: Date) => {
+  const slot = getAllWeekTimeSlots.value[date.getDay()];
+  console.log(time);
+  /* const current = new Date(
+    slot.date.getFullYear(),
+    slot.date.getMonth(),
+    slot.date.getDay(),
+    hours,
+    minutes,
+    0,
+    0
+  ); */
+  /*   return props.appointments
+        .filter((appointment) => {
+            const start = new Date(appointment.start_time);
+            return (
+                current.getDate() === start.getDate() &&
+                current.getHours() === start.getHours()
+            );
+        })
+        .map((appointment) => ({
+            ...appointment,
+            height: getEventHeight(
+                appointment.start_time,
+                appointment.end_time
+            ),
+            top: getEventTopSpace(appointment.start_time),
+        })); */
+  return [];
+};
 </script>
 <style lang="scss" scoped>
 @import url("./Week.scss");

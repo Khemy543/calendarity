@@ -42,6 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
   layout: "month",
   dates: () => [],
   currentDate: () => new Date(),
+  events: () => [],
 });
 
 const emit = defineEmits(["set-date", "toggle-modal"]);

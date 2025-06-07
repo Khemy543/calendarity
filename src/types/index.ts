@@ -31,4 +31,5 @@ export interface CalenadarGetters {
     getNextPrevDay: (direction: number, date: Date) => { month: number; year: number; date: number};
     dayToNumber: Keyable;
     isTodayDate: (date: Date) => boolean;
+    numberToDay: Keyable;
 }

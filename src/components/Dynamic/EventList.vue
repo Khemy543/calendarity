@@ -25,7 +25,6 @@ withDefaults(defineProps<Props>(), {
         padding: 0 3px;
         margin: 2px 2px 6px 2px;
         border-left-style: solid;
-        font-size: 8px;
         position: relative;
         background: $color-primary;
         cursor: pointer;

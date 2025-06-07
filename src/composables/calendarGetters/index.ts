@@ -36,6 +36,16 @@ const dayToNumber: Keyable = {
   Saturday: 6,
 };
 
+const numberToDay: Keyable = {
+  0: "Sunday",
+  1: "Monday",
+  2: "Tuesday",
+  3: "Wednesday",
+  4: "Thursday",
+  5: "Friday",
+  6: "Saturday",
+};
+
 const layouts: LayoutTypes[] = ["month", "week", "day"];
 
 const dayTimes = () => {
@@ -170,7 +180,6 @@ const getDayString = (date: Date) => {
   return days[dayIndex];
 };
 
-
 const isTodayDate = (date: Date) => {
   const today = new Date();
   return (
@@ -192,6 +201,7 @@ const getters: CalenadarGetters = {
   getDayString,
   getNextPrevDay,
   dayToNumber,
-  isTodayDate
+  isTodayDate,
+  numberToDay
 };
 export default getters;
